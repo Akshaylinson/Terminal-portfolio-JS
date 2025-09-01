@@ -577,5 +577,66 @@
             
             // Process command
             const output = commands[cmd] ? commands[cmd]() : commands.default(cmd);
+
+                        // Add to terminal output
+            const newOutput = document.createElement('div');
+            newOutput.className = 'output mb-6';
+            newOutput.innerHTML = `
+                <div class="flex items-baseline">
+                    <span class="text-green-500 font-bold">mark</span>
+                    <span class="mx-1">@</span>
+                    <span class="text-blue-400 font-bold">portfolio</span>
+                    <span class="text-yellow-400">:~$</span>
+                    <span class="ml-1">${cmd}</span>
+                </div>
+                <div class="my-2">
+                    ${output}
+                </div>
+            `;
+            terminalOutput.appendChild(newOutput);
+            
+            // Scroll to bottom
+            terminalOutput.scrollTop = terminalOutput.scrollHeight;
+        }
+        
+        // Handle command input
+        commandInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                const cmd = commandInput.value.trim().toLowerCase();
+                executeCommand(cmd);
+            } else if (e.key === 'ArrowUp') {
+                // Command history navigation
+                if (commandHistory.length > 0 && historyIndex > 0) {
+                    historyIndex--;
+                    commandInput.value = commandHistory[historyIndex];
+                }
+                e.preventDefault();
+            } else if (e.key === 'ArrowDown') {
+                // Command history navigation
+                if (historyIndex < commandHistory.length - 1) {
+                    historyIndex++;
+                    commandInput.value = commandHistory[historyIndex];
+                } else {
+                    historyIndex = commandHistory.length;
+                    commandInput.value = '';
+                }
+                e.preventDefault();
+            }
+        });
+        
+        // Allow clicking on menu items without losing focus
+        document.querySelectorAll('.terminal-header-bg a').forEach(link => {
+            link.addEventListener('mousedown', (e) => {
+                e.preventDefault();
+            });
+        });
+        
+        // Initial welcome message
+        window.onload = function() {
+            commandInput.focus();
+        };
+    </script>
+</body>
+</html>
             
 
