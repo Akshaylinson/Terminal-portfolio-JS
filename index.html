@@ -105,3 +105,100 @@
                 </div>
             </div>
         </div>
+
+         <!-- Terminal Section -->
+        <div class="flex-1 flex flex-col terminal-bg border border-terminal-border rounded-lg shadow-xl overflow-hidden h-[600px]">
+            <div class="terminal-header-bg border-b border-terminal-border px-5 py-3 flex justify-between items-center">
+                <div class="font-bold">mark@portfolio: ~</div>
+                <div class="flex gap-2">
+                    <div class="w-3 h-3 rounded-full bg-red-500 hover:bg-red-400 cursor-pointer"></div>
+                    <div class="w-3 h-3 rounded-full bg-yellow-500 hover:bg-yellow-400 cursor-pointer"></div>
+                    <div class="w-3 h-3 rounded-full bg-green-500 hover:bg-green-400 cursor-pointer"></div>
+                </div>
+            </div>
+
+            <div class="terminal-header-bg border-b border-terminal-border px-5 py-2 flex flex-wrap gap-x-4 gap-y-1">
+                <a href="#" onclick="executeCommand('help')" class="hover:text-green-500 transition-colors">help</a>
+                <a href="#" onclick="executeCommand('about')" class="hover:text-green-500 transition-colors">about</a>
+                <a href="#" onclick="executeCommand('projects')" class="hover:text-green-500 transition-colors">projects</a>
+                <a href="#" onclick="executeCommand('skills')" class="hover:text-green-500 transition-colors">skills</a>
+                <a href="#" onclick="executeCommand('experience')" class="hover:text-green-500 transition-colors">experience</a>
+                <a href="#" onclick="executeCommand('contact')" class="hover:text-green-500 transition-colors">contact</a>
+                <a href="#" onclick="executeCommand('education')" class="hover:text-green-500 transition-colors">education</a>
+                <a href="#" onclick="executeCommand('certifications')" class="hover:text-green-500 transition-colors">certifications</a>
+                <a href="#" onclick="executeCommand('leadership')" class="hover:text-green-500 transition-colors">leadership</a>
+                <a href="#" onclick="executeCommand('clear')" class="hover:text-green-500 transition-colors">clear</a>
+            </div>
+
+            <div class="flex-1 overflow-y-auto p-5" id="terminal-output">
+                <div class="output">
+                    <div class="flex items-baseline">
+                        <span class="text-green-500 font-bold">mark</span>
+                        <span class="mx-1">@</span>
+                        <span class="text-blue-400 font-bold">portfolio</span>
+                        <span class="text-yellow-400">:~$</span>
+                        <span class="ml-1">welcome</span>
+                    </div>
+                    <div class="my-2">
+                        Hi, I'm <span class="text-green-500 font-bold">Mark Gatere</span>, a <span class="text-blue-400 font-bold">Senior Software Engineer</span> & <span class="text-purple-500 font-bold">AI Specialist</span>.
+                    </div>
+                    <div class="mb-2">
+                        Welcome to my interactive <span class="text-yellow-400">terminal portfolio</span>!
+                    </div>
+                    <div class="mb-4">
+                        Type <span class="text-green-500 font-bold">'help'</span> to see available commands.
+                    </div>
+
+                    <div class="flex items-baseline">
+                        <span class="text-green-500 font-bold">mark</span>
+                        <span class="mx-1">@</span>
+                        <span class="text-blue-400 font-bold">portfolio</span>
+                        <span class="text-yellow-400">:~$</span>
+                        <span class="ml-1">help</span>
+                    </div>
+                    <div class="my-2">
+                        <div class="text-green-500 font-bold mb-2">Available commands:</div>
+                        <div class="grid command-grid gap-x-8 gap-y-1">
+                            <div class="flex">
+                                <span class="text-blue-400 font-bold min-w-[120px]">about</span>
+                                <span>- Learn about me</span>
+                            </div>
+                            <div class="flex">
+                                <span class="text-blue-400 font-bold min-w-[120px]">projects</span>
+                                <span>- View my projects</span>
+                            </div>
+                            <div class="flex">
+                                <span class="text-blue-400 font-bold min-w-[120px]">skills</span>
+                                <span>- See my skills</span>
+                            </div>
+                            <div class="flex">
+                                <span class="text-blue-400 font-bold min-w-[120px]">experience</span>
+                                <span>- Work experience</span>
+                            </div>
+                            <div class="flex">
+                                <span class="text-blue-400 font-bold min-w-[120px]">contact</span>
+                                <span>- Contact info</span>
+                            </div>
+                            <div class="flex">
+                                <span class="text-blue-400 font-bold min-w-[120px]">education</span>
+                                <span>- Education</span>
+                            </div>
+                            <div class="flex">
+                                <span class="text-blue-400 font-bold min-w-[120px]">certifications</span>
+                                <span>- Certifications</span>
+                            </div>
+                            <div class="flex">
+                                <span class="text-blue-400 font-bold min-w-[120px]">leadership</span>
+                                <span>- Leadership</span>
+                            </div>
+                            <div class="flex">
+                                <span class="text-blue-400 font-bold min-w-[120px]">clear</span>
+                                <span>- Clear terminal</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        Type any command to continue...
+                    </div>
+                </div>
+            </div>
