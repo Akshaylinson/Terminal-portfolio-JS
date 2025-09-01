@@ -202,3 +202,187 @@
                     </div>
                 </div>
             </div>
+
+
+                        <div class="terminal-header-bg border-t border-terminal-border px-5 py-3 flex items-center">
+                <div class="flex items-baseline mr-2">
+                    <span class="text-green-500 font-bold">mark</span>
+                    <span class="mx-1">@</span>
+                    <span class="text-blue-400 font-bold">portfolio</span>
+                    <span class="text-yellow-400">:~$</span>
+                </div>
+                <input type="text" id="command" class="flex-1 bg-transparent outline-none" autofocus>
+                <div class="w-2 h-5 bg-white cursor-blink ml-1"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const commandInput = document.getElementById('command');
+        const terminalOutput = document.getElementById('terminal-output');
+        
+        // Focus the input field
+        commandInput.focus();
+        
+        // Command history
+        let commandHistory = [];
+        let historyIndex = -1;
+        
+        // Command functions
+        const commands = {
+            help: () => {
+                return `
+<div class="text-green-500 font-bold mb-2">Available commands:</div>
+<div class="grid command-grid gap-x-8 gap-y-1">
+    <div class="flex">
+        <span class="text-blue-400 font-bold min-w-[120px]">about</span>
+        <span>- Learn about me</span>
+    </div>
+    <div class="flex">
+        <span class="text-blue-400 font-bold min-w-[120px]">projects</span>
+        <span>- View my projects</span>
+    </div>
+    <div class="flex">
+        <span class="text-blue-400 font-bold min-w-[120px]">skills</span>
+        <span>- See my skills</span>
+    </div>
+    <div class="flex">
+        <span class="text-blue-400 font-bold min-w-[120px]">experience</span>
+        <span>- Work experience</span>
+    </div>
+    <div class="flex">
+        <span class="text-blue-400 font-bold min-w-[120px]">contact</span>
+        <span>- Contact info</span>
+    </div>
+    <div class="flex">
+        <span class="text-blue-400 font-bold min-w-[120px]">education</span>
+        <span>- Education</span>
+    </div>
+    <div class="flex">
+        <span class="text-blue-400 font-bold min-w-[120px]">certifications</span>
+        <span>- Certifications</span>
+    </div>
+    <div class="flex">
+        <span class="text-blue-400 font-bold min-w-[120px]">leadership</span>
+        <span>- Leadership</span>
+    </div>
+    <div class="flex">
+        <span class="text-blue-400 font-bold min-w-[120px]">clear</span>
+        <span>- Clear terminal</span>
+    </div>
+</div>
+<div class="mt-4">
+    Type any command to continue...
+</div>`;
+            },
+            
+            about: () => {
+                return `
+<div class="text-green-500 font-bold mb-2">About Me:</div>
+<div class="mb-4">
+    I'm a passionate <span class="text-blue-400 font-bold">Senior Software Engineer</span> with over 7 years of experience in building scalable systems and <span class="text-purple-500 font-bold">AI-powered solutions</span>.
+    I specialize in bridging the gap between complex technical requirements and business value.
+</div>
+<div class="text-yellow-400 mb-2">Core Competencies:</div>
+<div class="space-y-1">
+    <div class="flex">
+        <span class="text-green-500 mr-2">❯</span>
+        <span>Full-stack development with modern frameworks</span>
+    </div>
+    <div class="flex">
+        <span class="text-green-500 mr-2">❯</span>
+        <span>Machine learning model development and deployment</span>
+    </div>
+    <div class="flex">
+        <span class="text-green-500 mr-2">❯</span>
+        <span>Cloud architecture and DevOps practices</span>
+    </div>
+    <div class="flex">
+        <span class="text-green-500 mr-2">❯</span>
+        <span>Technical leadership and team mentoring</span>
+    </div>
+</div>`;
+            },
+            
+            projects: () => {
+                return `
+<div class="text-green-500 font-bold mb-2">Featured Projects:</div>
+<div class="space-y-4">
+    <div class="bg-gray-800 border-l-4 border-green-500 p-4 rounded-r hover:translate-x-1 transition-transform">
+        <h3 class="text-cyan-400 font-bold text-lg mb-2">Enterprise AI Platform</h3>
+        <p>Developed a scalable AI platform serving 50+ enterprise clients with custom machine learning models.</p>
+        <p class="mt-1"><span class="text-blue-400 font-bold">Technologies:</span> Python, TensorFlow, Kubernetes, React, GraphQL</p>
+    </div>
+    <div class="bg-gray-800 border-l-4 border-green-500 p-4 rounded-r hover:translate-x-1 transition-transform">
+        <h3 class="text-cyan-400 font-bold text-lg mb-2">Automated DevOps Pipeline</h3>
+        <p>Created an end-to-end CI/CD pipeline reducing deployment times by 70% for a Fortune 500 company.</p>
+        <p class="mt-1"><span class="text-blue-400 font-bold">Technologies:</span> AWS, Docker, Terraform, Jenkins, Python</p>
+    </div>
+    <div class="bg-gray-800 border-l-4 border-green-500 p-4 rounded-r hover:translate-x-1 transition-transform">
+        <h3 class="text-cyan-400 font-bold text-lg mb-2">Open Source AI Library</h3>
+        <p>Maintainer of a popular open-source library for natural language processing with 5K+ GitHub stars.</p>
+        <p class="mt-1"><span class="text-blue-400 font-bold">Technologies:</span> Python, PyTorch, HuggingFace Transformers</p>
+    </div>
+</div>`;
+            },
+            
+            skills: () => {
+                return `
+<div class="text-green-500 font-bold mb-2">Technical Skills:</div>
+<div class="space-y-4">
+    <div>
+        <div class="text-yellow-400 mb-1">Languages:</div>
+        <div class="space-y-1">
+            <div class="flex">
+                <span class="text-green-500 mr-2">❯</span>
+                <span><span class="text-blue-400 font-bold">JavaScript/TypeScript</span> (Expert: React, Node.js, Express)</span>
+            </div>
+            <div class="flex">
+                <span class="text-green-500 mr-2">❯</span>
+                <span><span class="text-blue-400 font-bold">Python</span> (Advanced: Django, Flask, Data Science)</span>
+            </div>
+            <div class="flex">
+                <span class="text-green-500 mr-2">❯</span>
+                <span><span class="text-blue-400 font-bold">Java/Kotlin</span> (Spring Boot, Android)</span>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="text-yellow-400 mb-1">AI/ML:</div>
+        <div class="space-y-1">
+            <div class="flex">
+                <span class="text-green-500 mr-2">❯</span>
+                <span><span class="text-purple-500 font-bold">TensorFlow/PyTorch</span> (Model development)</span>
+            </div>
+            <div class="flex">
+                <span class="text-green-500 mr-2">❯</span>
+                <span><span class="text-purple-500 font-bold">NLP/Computer Vision</span> (Transformers, CNN)</span>
+            </div>
+            <div class="flex">
+                <span class="text-green-500 mr-2">❯</span>
+                <span><span class="text-purple-500 font-bold">MLOps</span> (Model deployment, monitoring)</span>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="text-yellow-400 mb-1">Cloud & DevOps:</div>
+        <div class="space-y-1">
+            <div class="flex">
+                <span class="text-green-500 mr-2">❯</span>
+                <span><span class="text-cyan-400 font-bold">AWS/GCP/Azure</span> (Certified Solutions Architect)</span>
+            </div>
+            <div class="flex">
+                <span class="text-green-500 mr-2">❯</span>
+                <span><span class="text-cyan-400 font-bold">Docker/Kubernetes</span> (Container orchestration)</span>
+            </div>
+            <div class="flex">
+                <span class="text-green-500 mr-2">❯</span>
+                <span><span class="text-cyan-400 font-bold">CI/CD Pipelines</span> (Jenkins, GitHub Actions)</span>
+            </div>
+        </div>
+    </div>
+</div>`;
+            },
+            
+            experience: () => {
+                return `
